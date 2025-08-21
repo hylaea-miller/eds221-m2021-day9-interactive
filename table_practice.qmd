@@ -1,0 +1,39 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+#| echo: false
+library(tidyverse)
+library(kableExtra)
+```
+
+```{r}
+#| echo: false
+whale_sightings <- data.table::data.table(
+        date = c("8/12/2014","8/13/2014","8/15/2014",
+                 "8/16/2014","8/16/2014"),
+        site = c("channel", "channel", "harbor", "channel", "channel"),
+         spp = c("unknown", "gray", "gray", "humpback", "gray"),
+      dist_m = c(400L, 200L, 60L, 300L, 150L),
+    behavior = c("breach", "spout", "spout", "feeding", "feeding")
+)
+```
+
+```{r}
+#| echo: false
+whale_sightings %>% 
+  kable(col.names = c("Date",
+                      "Site",
+                      "Species",
+                      "Distance (m)",
+                      "Behavior"
+                ) ) %>% 
+kable_classic() %>% 
+  column_spec(1, bold = TRUE, background = "yellow") %>% 
+  column_spec(2, italic = TRUE, background = "orange") %>% 
+  add_header_above(c(" " = 1, "One header" = 2, "Another header" = 2)) %>% 
+  scroll_box(height = "200px", width = "700px")
+```
